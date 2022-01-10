@@ -20,7 +20,7 @@ public class Main {
         float luminanceThreshold = 0.4f;
 
         List<int[][]> listOfFrames = new ArrayList<>();
-        List<int[][]> finalListOfDifferences = new ArrayList<>();
+        List<int[][]> listOfDifferences = new ArrayList<>();
 
         int baseHeight = 0;
         int baseWidth = 0;
@@ -65,13 +65,13 @@ public class Main {
                     if (frame[x][y] != frame[x+1][y+1]) finalFrame[x][y] = 1; else finalFrame[x][y] = 0;
                 }
             }
-            finalListOfDifferences.add(finalFrame);
+            listOfDifferences.add(finalFrame);
         }
 
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileWriter myWriter = new FileWriter(outPath+"video.json");
-        String category = gson.toJson(finalListOfDifferences);
+        String category = gson.toJson(listOfDifferences);
         myWriter.write(category);
         myWriter.close();
 
